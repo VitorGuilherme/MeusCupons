@@ -2,7 +2,11 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: 0,
+    position: 'absolute',
     alignItems: 'center',
     justifyContent: 'space-evenly',
     backgroundColor: '#3390C2',
@@ -40,12 +44,13 @@ const styles = StyleSheet.create({
     // width: '90%',
     // justifyContent: 'center',
     height: 50,
-    marginVertical: 10,
+    marginVertical: 20,
     padding: 10,
     borderWidth: 1,
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
     borderColor: 'rgba(255, 255, 255, 0.5)',
     borderRadius: 8,
+    marginBottom: 60
   },
   loginInputsContainer: {
     width: '100%',
@@ -59,12 +64,14 @@ const styles = StyleSheet.create({
   inputText: {
     minWidth: '85%',
     height: 50,
-    fontSize: 15,
+    fontSize: 20,
     alignItems: 'center',
     color: 'rgba(255, 255, 255, 1)',
   },
   forgotPasswordContainer: {
     alignSelf: 'flex-end',
+    top: 20,
+    left: 10,
   },
   forgotPasswordLink: {
     color: 'rgba(255, 255, 255, 1)',
@@ -74,7 +81,7 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     gap: 15,
-    bottom: 50
+    bottom: 50,
   },
   signInButton: {
     justifyContent: 'center',
@@ -84,7 +91,6 @@ const styles = StyleSheet.create({
     padding: 5,
     backgroundColor: '#FAFF04',
     borderRadius: 10,
-
   },
   signUpButton: {
     justifyContent: 'center',
@@ -94,23 +100,23 @@ const styles = StyleSheet.create({
     padding: 5,
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 1)',
-    borderRadius: 10
+    borderRadius: 10,
   },
   signInText: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#000'
+    color: '#000',
   },
   signUpText: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#fff'
+    color: '#fff',
   },
   loginWithDifferentEmailContainer: {
     flexDirection: 'row',
     gap: 10,
-    bottom: 50
-  }
+    bottom: 50,
+  },
 });
 
 export default styles;
