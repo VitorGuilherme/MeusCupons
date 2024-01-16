@@ -45,6 +45,9 @@ const styles = StyleSheet.create({
 
   textInputStyle: {
     maxWidth: '95%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     height: 50,
     marginVertical: 10,
     padding: 10,
@@ -52,7 +55,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
     borderColor: 'rgba(255, 255, 255, 0.5)',
     borderRadius: 8,
-    justifyContent: 'center'
   },
 
   signUpBtnsContainer: {

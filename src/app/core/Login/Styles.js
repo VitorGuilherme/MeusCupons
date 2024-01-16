@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     marginBottom: 60
   },
   loginInputsContainer: {
-    width: '100%',
+    width: '110%',
     flexDirection: 'row',
     height: '85%',
     alignItems: 'center',
@@ -78,10 +78,10 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
   buttonsContainer: {
-    width: '100%',
-    alignItems: 'center',
-    gap: 15,
+    width: '90%',
+    justifyContent: 'center',
     bottom: 50,
+    gap: 10
   },
   signInButton: {
     justifyContent: 'center',

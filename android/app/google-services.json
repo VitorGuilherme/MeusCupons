@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "264784182179",
+    "project_id": "meus-cupons-a695e",
+    "storage_bucket": "meus-cupons-a695e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:264784182179:android:1cf9e98eaf7b3e47483816",
+        "android_client_info": {
+          "package_name": "com.meuscupons"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbBXi_IwBLEyeoJX1mX-gNKhs6cqU5db8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

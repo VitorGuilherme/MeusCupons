@@ -1,13 +1,26 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, TextInput, Image, TouchableOpacity} from 'react-native';
 
 import styles from './Styles';
 import {useNavigation} from '@react-navigation/native';
 
-import {SharedTextInput} from '../../shared/sharedComponents';
+import {SharedTextInput, SharedButton} from '../../shared/sharedComponents';
+
+import auth from '@react-native-firebase/auth';
 
 export default Login = () => {
   const navigation = useNavigation();
+
+  const [isEyeClosed, setIsEyeClosed] = useState(true);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const signIn = () => {
+    auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(() => navigation.navigate('Home'))
+      .catch(error => console.log(error))
+  };
 
   return (
     <View style={styles.container}>
@@ -22,45 +35,73 @@ export default Login = () => {
         <View style={styles.inputStyle1}>
           <View style={styles.loginInputsContainer}>
             <Image source={require('../../assets/icons/perfil-Icon.png')} />
-            <SharedTextInput placeholder={'Digite o seu email'} />
+            <SharedTextInput placeholder={'Digite o seu email'} value={email} onChangeText={setEmail}/>
           </View>
         </View>
         <View style={styles.inputStyle2}>
           <View style={styles.loginInputsContainer}>
             <Image source={require('../../assets/icons/password-Icon.png')} />
-            <SharedTextInput
-              placeholder="Digite a sua senha"
-              secureTextEntry={true}
-            />
-            <TouchableOpacity>
-              <Image
-                source={require('../../assets/icons/eye-icon.png')}
-                style={{right: 10}}
+            {isEyeClosed ? (
+              <SharedTextInput
+                placeholder="Digite a sua senha"
+                secureTextEntry={true}
+                length={8}
+                value={password}
+                onChangeText={setPassword}
               />
+            ) : (
+              <SharedTextInput
+                placeholder="Digite a sua senha"
+                secureTextEntry={false}
+                length={8}
+                value={password}
+                onChangeText={setPassword}
+              />
+            )}
+            <TouchableOpacity onPress={() => setIsEyeClosed(!isEyeClosed)}>
+              {isEyeClosed ? (
+                <Image
+                  source={require('../../assets/icons/closedEye.png')}
+                  style={{right: 12}}
+                />
+              ) : (
+                <Image
+                  source={require('../../assets/icons/openedEye.png')}
+                  style={{right: 8, top: 1}}
+                />
+              )}
             </TouchableOpacity>
           </View>
-        <TouchableOpacity style={styles.forgotPasswordContainer}>
-          <Text style={styles.forgotPasswordLink}>Esqueceu sua senha?</Text>
-        </TouchableOpacity>
+          <TouchableOpacity style={styles.forgotPasswordContainer}>
+            <Text style={styles.forgotPasswordLink}>Esqueceu sua senha?</Text>
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.buttonsContainer}>
-        <TouchableOpacity style={styles.signInButton}>
-          <Text style={styles.signInText}>ENTRE</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.signUpButton}
-          onPress={() => navigation.navigate('SignUp')}>
-          <Text style={styles.signUpText}>CADASTRE-SE</Text>
-        </TouchableOpacity>
+        <SharedButton title="ENTRAR" color="#FAFF04" textColor="#000" onPress={signIn}/>
+        <SharedButton
+          title="CADASTRE-SE"
+          hasBorder={true}
+          textColor="#fff"
+          onPress={() => navigation.navigate('SignUp')}
+        />
       </View>
       <View style={styles.loginWithDifferentEmailContainer}>
-        <Image
-          source={require('../../assets/icons/loginWithAppleIcon.png')}></Image>
-        <Image
-          source={require('../../assets/icons/loginWithGmailIcon.png')}></Image>
-        <Image
-          source={require('../../assets/icons/loginWithFacebookIcon.png')}></Image>
+        <TouchableOpacity>
+          <Image
+            source={require('../../assets/icons/loginWithAppleIcon.png')}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Image
+            source={require('../../assets/icons/loginWithGmailIcon.png')}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Image
+            source={require('../../assets/icons/loginWithFacebookIcon.png')}
+          />
+        </TouchableOpacity>
       </View>
     </View>
   );

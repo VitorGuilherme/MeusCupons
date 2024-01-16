@@ -1,13 +1,18 @@
 import React, {useState} from 'react';
 import {TextInput, TouchableOpacity, Text, StyleSheet} from 'react-native';
 
-const SharedTextInput = ({placeholder, secureTextEntry}) => {
+
+// const [isPassword, setIsPassword] = useState('');
+const SharedTextInput = ({placeholder, secureTextEntry, length,value, onChangeText}) => {
   return (
     <TextInput
       placeholder={placeholder}
       secureTextEntry={secureTextEntry}
       placeholderTextColor="rgba(255, 255, 255, 0.5)"
-      style={styles.inputText}
+      style={[styles.inputText]}
+      maxLength={length}
+      value={value}
+      onChangeText={onChangeText}
     />
   );
 };
@@ -28,7 +33,7 @@ const SharedButton = ({color, title, onPress, textColor, hasBorder}) => {
 
 const styles = StyleSheet.create({
   inputText: {
-    minWidth: '85%',
+    minWidth: '80%',
     height: 50,
     fontSize: 20,
     alignItems: 'center',
@@ -52,8 +57,8 @@ const styles = StyleSheet.create({
 
   buttonWithBorder: {
     borderWidth: 1,
-    borderColor: '#fff'
-  }
+    borderColor: '#fff',
+  },
 });
 
 export {SharedTextInput, SharedButton};
