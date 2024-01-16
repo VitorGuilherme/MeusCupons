@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, Image, TouchableOpacity} from 'react-native';
-
-import styles from './Styles';
 import {useNavigation} from '@react-navigation/native';
 
 import {SharedTextInput, SharedButton} from '../../shared/sharedComponents';
+import styles from './Styles';
+
+import i18n from '../../shared/i18n'
 
 import auth from '@react-native-firebase/auth';
 
@@ -13,7 +14,7 @@ export default Login = () => {
 
   const [isEyeClosed, setIsEyeClosed] = useState(true);
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState(true);
 
   const signIn = () => {
     auth()
@@ -26,10 +27,10 @@ export default Login = () => {
     <View style={styles.container}>
       <View>
         <View style={styles.titleAndLogo}>
-          <Text style={styles.title}>Meus Cupons</Text>
+          <Text style={styles.title}>{i18n.meusCuponsTitle}</Text>
           <Image source={require('../../assets/MeusCuponsLogo.png')} />
         </View>
-        <Text style={styles.loginSubtitle}>Bem vindo e boas compras!</Text>
+        <Text style={styles.loginSubtitle}>{i18n.welcomeText}</Text>
       </View>
       <View style={{bottom: 20}}>
         <View style={styles.inputStyle1}>
@@ -73,7 +74,7 @@ export default Login = () => {
             </TouchableOpacity>
           </View>
           <TouchableOpacity style={styles.forgotPasswordContainer}>
-            <Text style={styles.forgotPasswordLink}>Esqueceu sua senha?</Text>
+            <Text style={styles.forgotPasswordLink}>{i18n.forgotPassword}</Text>
           </TouchableOpacity>
         </View>
       </View>

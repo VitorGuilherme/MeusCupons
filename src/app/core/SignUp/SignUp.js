@@ -11,6 +11,8 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 
 import auth from '@react-native-firebase/auth';
 
+import i18n from '../../shared/i18n';
+
 export default SignUp = () => {
   const navigation = useNavigation();
   const [isEyeClosed, setIsEyeClosed] = useState(true);
@@ -24,37 +26,45 @@ export default SignUp = () => {
       .createUserWithEmailAndPassword(email, password)
       .then(userCredential => {
         console.log('user:', userCredential);
+        const user = userCredential.user;
+        user
+          .updateProfile({
+            displayName: name,
+          })
+          .then(() => {
+            navigation.navigate('Login');
+          });
       })
-    .catch(error => {
-      if (error.code === 'auth/email-already-in-use') {
-        console.log('That email address is already in use!');
-      }
+      .catch(error => {
+        if (error.code === 'auth/email-already-in-use') {
+          console.log('That email address is already in use!');
+        }
 
-      if (error.code === 'auth/invalid-email') {
-        console.log('That email address is invalid!');
-      }
-      console.error(error);
-    });
+        if (error.code === 'auth/invalid-email') {
+          console.log('That email address is invalid!');
+        }
+        console.error(error);
+      });
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Image source={MeusCuponsLogo} />
-        <Text style={styles.headerTitle}>Meus Cupons</Text>
+        <Text style={styles.headerTitle}>{i18n.meusCuponsTitle}</Text>
       </View>
-      <Text style={styles.signUpTextTitle}>Cadastro</Text>
+      <Text style={styles.signUpTextTitle}>{i18n.signUpTitle}</Text>
       <View style={styles.signUpInfoContainer}>
-        {/* <Text style={styles.signUpText}>Nome</Text>
+        <Text style={styles.signUpText}>{i18n.signUpName}</Text>
         <View style={[styles.textInputStyle]}>
-          <SharedTextInput />
-        </View> */}
-        <Text style={styles.signUpText}>Email</Text>
+          <SharedTextInput value={name} onChangeText={setName} />
+        </View>
+        <Text style={styles.signUpText}>{i18n.signUpEmail}</Text>
         <View style={styles.textInputStyle}>
           <SharedTextInput value={email} onChangeText={setEmail} />
         </View>
 
-        <Text style={styles.signUpText}>Senha</Text>
+        <Text style={styles.signUpText}>{i18n.signUpPassword}</Text>
         <View style={styles.textInputStyle}>
           {isEyeClosed ? (
             <SharedTextInput
