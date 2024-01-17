@@ -27,10 +27,8 @@ const styles = StyleSheet.create({
     color: '#FAFF04',
     textAlign: 'center',
   },
-  inputStyle1: {
+  emailInputStyle: {
     maxWidth: '95%',
-    // width: '90%',
-    // justifyContent: 'center',
     height: 50,
     marginVertical: 10,
     padding: 10,
@@ -39,10 +37,18 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255, 255, 255, 0.5)',
     borderRadius: 8,
   },
-  inputStyle2: {
+  emailInputStyleInvalid: {
+    maxWidth: '95%',
+    height: 50,
+    marginVertical: 10,
+    padding: 10,
+    borderWidth: 1,
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    borderColor: '#F90C0C',
+    borderRadius: 8,
+  },
+  passwordInputStyle: {
     maxWidth: '90%',
-    // width: '90%',
-    // justifyContent: 'center',
     height: 50,
     marginVertical: 20,
     padding: 10,
@@ -50,7 +56,18 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
     borderColor: 'rgba(255, 255, 255, 0.5)',
     borderRadius: 8,
-    marginBottom: 60
+    marginBottom: 60,
+  },
+  passwordInputStyleInvalid: {
+    maxWidth: '90%',
+    height: 50,
+    marginVertical: 20,
+    padding: 10,
+    borderWidth: 1,
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    borderColor: '#F90C0C',
+    borderRadius: 8,
+    marginBottom: 60,
   },
   loginInputsContainer: {
     width: '110%',
@@ -81,7 +98,16 @@ const styles = StyleSheet.create({
     width: '90%',
     justifyContent: 'center',
     bottom: 50,
-    gap: 10
+    gap: 10,
+  },
+  invalidButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '90%',
+    height: 50,
+    padding: 5,
+    backgroundColor: '#EAEBD2',
+    borderRadius: 10,
   },
   signInButton: {
     justifyContent: 'center',
@@ -116,6 +142,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 10,
     bottom: 50,
+  },
+  obrigatoryFieldStyle: {
+    fontSize: 14,
+    color: '#F90C0C',
+    bottom: 10,
   },
 });
 

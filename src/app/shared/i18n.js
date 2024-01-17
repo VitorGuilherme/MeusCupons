@@ -3,6 +3,7 @@ const pt = {
   //Login
   welcomeText: 'Bem vindo e boas compras!',
   forgotPassword: 'Esqueceu sua senha?',
+  obrigatoryField: 'Campo Obrigatório!',
   //Home
   profileHelloText: 'Olá, ',
   coupomDescriptionText:

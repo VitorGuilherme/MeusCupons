@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {View, Text, Image} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  TouchableWithoutFeedback,
+  Keyboard,
+  Alert
+} from 'react-native';
 
 import styles from './Styles';
 
@@ -19,101 +26,149 @@ export default SignUp = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [confirmPassword, setConfirmPassword] = useState('');
+  const [isValidEmail, setIsvalidEmail] = useState(true);
+  const [isValidPassword, setIsvalidPassword] = useState(true);
 
   const handleSignUp = () => {
-    auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(userCredential => {
-        console.log('user:', userCredential);
-        const user = userCredential.user;
-        user
-          .updateProfile({
-            displayName: name,
-          })
-          .then(() => {
-            navigation.navigate('Login');
-          });
-      })
-      .catch(error => {
-        if (error.code === 'auth/email-already-in-use') {
-          console.log('That email address is already in use!');
-        }
+    if (email && password) {
+      auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then(userCredential => {
+          console.log('user:', userCredential);
+          const user = userCredential.user;
+          user
+            .updateProfile({
+              displayName: name,
+            })
+            .then(() => {
+              navigation.navigate('Login');
+            });
+        })
+        .catch(error => {
+          if (error.code === 'auth/email-already-in-use') {
+            console.log('That email address is already in use!');
+          }
 
-        if (error.code === 'auth/invalid-email') {
-          console.log('That email address is invalid!');
-        }
-        console.error(error);
-      });
+          if (error.code === 'auth/invalid-email') {
+            console.log('That email address is invalid!');
+          }
+          console.error(error);
+        });
+    } else {
+      Alert.alert('Email e senha não registrados!');
+    }
+  };
+
+  const handleEmailValidation = () => {
+    if (!email) {
+      setIsvalidEmail(false);
+    } else {
+      setIsvalidEmail(true);
+    }
+  };
+  const handlePasswordValidation = () => {
+    if (!password) {
+      setIsvalidPassword(false);
+    } else {
+      setIsvalidPassword(true);
+    }
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Image source={MeusCuponsLogo} />
-        <Text style={styles.headerTitle}>{i18n.meusCuponsTitle}</Text>
-      </View>
-      <Text style={styles.signUpTextTitle}>{i18n.signUpTitle}</Text>
-      <View style={styles.signUpInfoContainer}>
-        <Text style={styles.signUpText}>{i18n.signUpName}</Text>
-        <View style={[styles.textInputStyle]}>
-          <SharedTextInput value={name} onChangeText={setName} />
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Image source={MeusCuponsLogo} />
+          <Text style={styles.headerTitle}>{i18n.meusCuponsTitle}</Text>
         </View>
-        <Text style={styles.signUpText}>{i18n.signUpEmail}</Text>
-        <View style={styles.textInputStyle}>
-          <SharedTextInput value={email} onChangeText={setEmail} />
-        </View>
+        <Text style={styles.signUpTextTitle}>{i18n.signUpTitle}</Text>
+        <View style={styles.signUpInfoContainer}>
+          <Text style={styles.signUpText}>{i18n.signUpName}</Text>
+          <View style={[styles.textInputStyle]}>
+            <SharedTextInput value={name} onChangeText={setName} />
+          </View>
 
-        <Text style={styles.signUpText}>{i18n.signUpPassword}</Text>
-        <View style={styles.textInputStyle}>
-          {isEyeClosed ? (
+          <Text
+            style={isValidEmail ? styles.signUpText : styles.signUpTextInvalid}>
+            {i18n.signUpEmail}
+          </Text>
+          <View
+            style={
+              isValidEmail
+                ? styles.textInputStyle
+                : styles.textInputStyleInvalid
+            }>
             <SharedTextInput
-              secureTextEntry
-              length={8}
-              value={password}
-              onChangeText={setPassword}
-              style={{left: 10}}
+              value={email}
+              onChangeText={setEmail}
+              onBlur={handleEmailValidation}
             />
-          ) : (
-            <SharedTextInput
-              secureTextEntry={false}
-              length={8}
-              value={password}
-              onChangeText={setPassword}
-            />
-          )}
-          <TouchableOpacity onPress={() => setIsEyeClosed(!isEyeClosed)}>
+          </View>
+          {!isValidEmail ? (
+            <Text style={styles.obrigatoryFieldStyle}>
+              {i18n.obrigatoryField}
+            </Text>
+          ) : null}
+
+          <Text
+            style={
+              isValidPassword ? styles.signUpText : styles.signUpTextInvalid
+            }>
+            {i18n.signUpPassword}
+          </Text>
+          <View
+            style={
+              isValidPassword
+                ? styles.textInputStyle
+                : styles.textInputStyleInvalid
+            }>
             {isEyeClosed ? (
-              <Image source={require('../../assets/icons/closedEye.png')} />
+              <SharedTextInput
+                secureTextEntry
+                length={6}
+                value={password}
+                onChangeText={setPassword}
+                style={{left: 10}}
+                onBlur={handlePasswordValidation}
+              />
             ) : (
-              <Image source={require('../../assets/icons/openedEye.png')} />
+              <SharedTextInput
+                secureTextEntry={false}
+                length={6}
+                value={password}
+                onChangeText={setPassword}
+                onBlur={handlePasswordValidation}
+              />
             )}
-          </TouchableOpacity>
+            <TouchableOpacity onPress={() => setIsEyeClosed(!isEyeClosed)}>
+              {isEyeClosed ? (
+                <Image source={require('../../assets/icons/closedEye.png')} />
+              ) : (
+                <Image source={require('../../assets/icons/openedEye.png')} />
+              )}
+            </TouchableOpacity>
+          </View>
+          {!isValidPassword ? (
+            <Text style={styles.obrigatoryFieldStyle}>
+              {i18n.obrigatoryField}
+            </Text>
+          ) : null}
         </View>
-
-        {/* <Text style={styles.signUpText}>Confirme a senha </Text>
-        <View style={styles.textInputStyle}>
-          {isEyeClosed ? (
-            <SharedTextInput secureTextEntry={true} length={8} />
-          ) : (
-            <SharedTextInput secureTextEntry={false} length={8} />
-          )}
-        </View> */}
+        <View style={styles.signUpBtnsContainer}>
+          <SharedButton
+            title="ENVIAR"
+            color={isValidEmail && isValidPassword ? '#FAFF04' : '#EAEBD2'}
+            textColor="#000"
+            onPress={handleSignUp}
+          />
+          <SharedButton
+            title="VOLTAR"
+            textColor="#fff"
+            hasBorder={true}
+            onPress={() => navigation.navigate('Login')}
+          />
+        </View>
       </View>
-      <View style={styles.signUpBtnsContainer}>
-        <SharedButton
-          title="ENVIAR"
-          color="#FAFF04"
-          textColor="#000"
-          onPress={handleSignUp}
-        />
-        <SharedButton
-          title="VOLTAR"
-          textColor="#fff"
-          hasBorder={true}
-          onPress={() => navigation.navigate('Login')}
-        />
-      </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };

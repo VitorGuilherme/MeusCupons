@@ -3,7 +3,7 @@ import {TextInput, TouchableOpacity, Text, StyleSheet} from 'react-native';
 
 
 // const [isPassword, setIsPassword] = useState('');
-const SharedTextInput = ({placeholder, secureTextEntry, length,value, onChangeText}) => {
+const SharedTextInput = ({placeholder, secureTextEntry, length,value, onChangeText, onBlur, onFocus}) => {
   return (
     <TextInput
       placeholder={placeholder}
@@ -13,6 +13,7 @@ const SharedTextInput = ({placeholder, secureTextEntry, length,value, onChangeTe
       maxLength={length}
       value={value}
       onChangeText={onChangeText}
+      onBlur={onBlur}
     />
   );
 };

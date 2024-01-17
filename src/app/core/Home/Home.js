@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import {View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
 
 import styles from '../Home/Styles';
 
@@ -7,6 +7,7 @@ import i18n from '../../shared/i18n';
 
 import auth from '@react-native-firebase/auth';
 import {useNavigation} from '@react-navigation/native';
+import Coupon from '../../shared/Coupons/Coupons';
 
 export default Home = () => {
   const [displayName, setDisplayName] = useState('');
@@ -22,7 +23,7 @@ export default Home = () => {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <TouchableOpacity onPress={() => navigation.navigate('Login')}>
         <View style={styles.header}>
           <Image
@@ -48,6 +49,21 @@ export default Home = () => {
         </View>
         <Text style={styles.availableCoupons}>{i18n.availableCoupons}</Text>
       </View>
-    </View>
+      <View style={{gap: 15}}>
+        <Coupon mallName="Até logo" encryptedText="**********" />
+        <Coupon mallName="Boa Compra" encryptedText="**********" />
+        <Coupon mallName="Bom e barato" encryptedText="**********" />
+        <Coupon mallName="Compra Certa" encryptedText="**********" />
+        <Coupon mallName="Baratão" encryptedText="**********" />
+        <Coupon mallName="Mago" encryptedText="**********" />
+        <Coupon mallName="Nagumo" encryptedText="**********" />
+        <Coupon mallName="Primos" encryptedText="**********" />
+        <Coupon mallName="Mohamed" encryptedText="**********" />
+        <Coupon mallName="Economia" encryptedText="**********" />
+        <Coupon mallName="Seu Pedro" encryptedText="**********" />
+        <Coupon mallName="Pague menos" encryptedText="**********" />
+        <Coupon mallName="Ouro" encryptedText="**********" />
+      </View>
+    </ScrollView>
   );
 };
