@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 
+
 export default styles = StyleSheet.create({
   couponStyle: {
     flexDirection: 'row',
@@ -8,21 +9,24 @@ export default styles = StyleSheet.create({
     padding: 12,
     width: '90%',
     height: 60,
-    borderWidth: 0.5,
+    borderWidth: 1,
     borderRadius: 10,
-    borderColor: '#3390C2',
-    backgroundColor: '#E0EBF1',
+    borderColor: '#A7A2A2',
     top: 60,
     left: '35%',
+    gap: 5
+  },
+  profileCouponStyle: {
+    right: 50,
   },
   mallNameStyle: {
     fontSize: 20,
-    color: '#3390C2',
+    color: '#A7A2A2',
     fontWeight: 'bold',
   },
   encryptedText: {
     fontSize: 15,
-    color: '#3390C2',
+    color: '#A7A2A2',
     fontWeight: 'bold',
   },
 });

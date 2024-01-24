@@ -1,9 +1,16 @@
 import React, {useState} from 'react';
 import {TextInput, TouchableOpacity, Text, StyleSheet} from 'react-native';
 
-
 // const [isPassword, setIsPassword] = useState('');
-const SharedTextInput = ({placeholder, secureTextEntry, length,value, onChangeText, onBlur, onFocus}) => {
+const SharedTextInput = ({
+  placeholder,
+  secureTextEntry,
+  length,
+  value,
+  onChangeText,
+  onBlur,
+  onFocus,
+}) => {
   return (
     <TextInput
       placeholder={placeholder}
@@ -18,16 +25,34 @@ const SharedTextInput = ({placeholder, secureTextEntry, length,value, onChangeTe
   );
 };
 
-const SharedButton = ({color, title, onPress, textColor, hasBorder}) => {
+const SharedButton = ({
+  color,
+  backgroundColor,
+  title,
+  onPress,
+  hasBorder,
+  fontSize,
+  padding,
+}) => {
   const [borderStyle, setBorderStyle] = useState(
     hasBorder ? styles.buttonWithBorder : null,
   );
 
   return (
     <TouchableOpacity
-      style={[styles.buttonStyle, {backgroundColor: color}, borderStyle]}
+      style={[
+        styles.buttonStyle,
+        {backgroundColor: backgroundColor, padding: padding},
+        borderStyle,
+      ]}
       onPress={onPress}>
-      <Text style={[styles.buttonText, {color: textColor}]}>{title}</Text>
+      <Text
+        style={[
+          styles.buttonText,
+          {color: color },
+        ]}>
+        {title}
+      </Text>
     </TouchableOpacity>
   );
 };

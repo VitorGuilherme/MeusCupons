@@ -52,6 +52,16 @@ const styles = StyleSheet.create({
     top: 20,
     left: 30,
   },
+  memberAnnounced:{
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#3390C2',
+
+  },
+  clickHere: {
+    color: '#3390C2',
+    textDecorationLine: 'underline',
+  },
 });
 
 export default styles;

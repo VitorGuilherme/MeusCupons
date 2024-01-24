@@ -11,14 +11,14 @@ import {
 import styles from './Styles';
 
 import MeusCuponsLogo from '../../assets/cartSmall.png';
-import {SharedTextInput, SharedButton} from '../../shared/sharedComponents';
+import {SharedTextInput, SharedButton} from '../../components/sharedComponents';
 
 import {useNavigation} from '@react-navigation/native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 import auth from '@react-native-firebase/auth';
 
-import i18n from '../../shared/i18n';
+import i18n from '../../components/i18n';
 
 export default SignUp = () => {
   const navigation = useNavigation();
@@ -157,13 +157,13 @@ export default SignUp = () => {
         <View style={styles.signUpBtnsContainer}>
           <SharedButton
             title="ENVIAR"
-            color={isValidEmail && isValidPassword ? '#FAFF04' : '#EAEBD2'}
-            textColor="#000"
+            backgroundColor={isValidEmail && isValidPassword ? '#FAFF04' : '#EAEBD2'}
+            color="#000"
             onPress={handleSignUp}
           />
           <SharedButton
             title="VOLTAR"
-            textColor="#fff"
+            color="#fff"
             hasBorder={true}
             onPress={() => navigation.navigate('Login')}
           />

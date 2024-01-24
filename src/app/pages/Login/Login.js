@@ -6,14 +6,14 @@ import {
   TouchableOpacity,
   Alert,
   TouchableWithoutFeedback,
-  Keyboard 
+  Keyboard,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-import {SharedTextInput, SharedButton} from '../../shared/sharedComponents';
+import {SharedTextInput, SharedButton} from '../../components/sharedComponents';
 import styles from './Styles';
 
-import i18n from '../../shared/i18n';
+import i18n from '../../components/i18n';
 
 import auth from '@react-native-firebase/auth';
 
@@ -142,25 +142,20 @@ export default Login = () => {
         <View style={styles.buttonsContainer}>
           <SharedButton
             title="ENTRAR"
-            color={
+            backgroundColor={
               !emailValidation || !passwordValidation ? '#EAEBD2' : '#FAFF04'
             }
-            textColor="#000"
+            color="#000"
             onPress={signIn}
           />
           <SharedButton
             title="CADASTRE-SE"
             hasBorder={true}
-            textColor="#fff"
+            color="#fff"
             onPress={() => navigation.navigate('SignUp')}
           />
         </View>
         <View style={styles.loginWithDifferentEmailContainer}>
-          <TouchableOpacity>
-            <Image
-              source={require('../../assets/icons/loginWithAppleIcon.png')}
-            />
-          </TouchableOpacity>
           <TouchableOpacity>
             <Image
               source={require('../../assets/icons/loginWithGmailIcon.png')}
