@@ -7,6 +7,7 @@ import {
   Alert,
   TouchableWithoutFeedback,
   Keyboard,
+  KeyboardAvoidingView,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
@@ -55,15 +56,16 @@ export default Login = () => {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View style={styles.container}>
-        <View>
-          <View style={styles.titleAndLogo}>
-            <Text style={styles.title}>{i18n.meusCuponsTitle}</Text>
-            <Image source={require('../../assets/MeusCuponsLogo.png')} />
-          </View>
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={-100}>
+        <View style={styles.titleAndLogo}>
+          <Image source={require('../../assets/cart45Big.png')} style={{top: 24, right: 25}}/>
+          <Text style={styles.title}>{i18n.meusCuponsTitle}</Text>
           <Text style={styles.loginSubtitle}>{i18n.welcomeText}</Text>
         </View>
-        <View style={{bottom: 20}}>
+        <View style={{bottom: 10, gap: -10}}>
           <View
             style={[
               emailValidation
@@ -81,7 +83,7 @@ export default Login = () => {
             </View>
           </View>
           {!emailValidation ? (
-            <Text style={[styles.obrigatoryFieldStyle, {bottom: 12}]}>
+            <Text style={[styles.obrigatoryFieldStyle, {bottom: 2}]}>
               {i18n.obrigatoryField}
             </Text>
           ) : null}
@@ -167,7 +169,7 @@ export default Login = () => {
             />
           </TouchableOpacity>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </TouchableWithoutFeedback>
   );
 };

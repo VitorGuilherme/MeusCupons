@@ -104,6 +104,7 @@ export default Home = () => {
           <Coupon mallName="Seu Pedro" encryptedText="**********" />
           <Coupon mallName="Pague menos" encryptedText="**********" />
           <Coupon mallName="Ouro" encryptedText="**********" />
+          <Coupon mallName="Ouro" encryptedText="**********" />
         </View>
       </ScrollView>
     </View>

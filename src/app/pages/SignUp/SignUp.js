@@ -41,7 +41,7 @@ export default SignUp = () => {
               displayName: name,
             })
             .then(() => {
-              navigation.navigate('Login');
+              navigation.navigate('Home');
             });
         })
         .catch(error => {

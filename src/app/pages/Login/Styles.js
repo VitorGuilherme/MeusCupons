@@ -12,18 +12,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#3390C2',
   },
   titleAndLogo: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    // flexDirection: 'row',
+    alignItems: 'center',
   },
   title: {
-    fontSize: 40,
+    fontSize: 50,
     color: '#fff',
     fontWeight: 'bold',
-    padding: 14,
+    // padding: 5,
   },
   loginSubtitle: {
     fontSize: 25,
-    height: 35,
     color: '#FAFF04',
     textAlign: 'center',
   },
@@ -96,8 +95,9 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     width: '90%',
+    alignItems: 'center',
     justifyContent: 'center',
-    bottom: 50,
+    bottom: 60,
     gap: 10,
   },
   invalidButton: {
