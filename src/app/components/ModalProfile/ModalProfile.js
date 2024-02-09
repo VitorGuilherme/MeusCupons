@@ -8,6 +8,7 @@ import Coupon from '../Coupons/Coupons';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 import {SharedButton} from '../sharedComponents';
+import { useNavigation } from '@react-navigation/native';
 
 export default profileModal = () => {
   const [displayName, setDisplayName] = useState('');
@@ -20,6 +21,8 @@ export default profileModal = () => {
     }
   }, []);
 
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <View style={styles.profileNameContainer}>
@@ -28,8 +31,8 @@ export default profileModal = () => {
           {displayName}
         </Text>
       </View>
-      <View style={styles.yourCouponsContainer}>
-        <Text style={styles.yourCouponsText}>{i18n.yourCoupons}</Text>
+      <View style={styles.usedCouponsContainer}>
+        <Text style={styles.usedCouponsText}>{i18n.usedCoupons}</Text>
         <View style={{gap: 10}}>
           <Coupon mallName="Até logo" encryptedText="efb8c11149" />
           <Coupon mallName="Barato" encryptedText="wedr45678c" />
@@ -49,6 +52,10 @@ export default profileModal = () => {
             color="#FFFFFF"
             title={i18n.logoutButton}
             padding={25}
+            onPress={() => navigation.reset({
+              index: 0,
+              routes: [{ name: 'Login' }],
+            })}
           />
         </TouchableOpacity>
       </View>

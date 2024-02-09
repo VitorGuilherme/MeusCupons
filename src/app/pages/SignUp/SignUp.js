@@ -5,7 +5,7 @@ import {
   Image,
   TouchableWithoutFeedback,
   Keyboard,
-  Alert
+  Alert,
 } from 'react-native';
 
 import styles from './Styles';
@@ -157,7 +157,9 @@ export default SignUp = () => {
         <View style={styles.signUpBtnsContainer}>
           <SharedButton
             title="ENVIAR"
-            backgroundColor={isValidEmail && isValidPassword ? '#FAFF04' : '#EAEBD2'}
+            backgroundColor={
+              isValidEmail && isValidPassword ? '#FAFF04' : '#EAEBD2'
+            }
             color="#000"
             onPress={handleSignUp}
           />
@@ -165,7 +167,12 @@ export default SignUp = () => {
             title="VOLTAR"
             color="#fff"
             hasBorder={true}
-            onPress={() => navigation.navigate('Login')}
+            onPress={() =>
+              navigation.reset({
+                index: 0,
+                routes: [{name: 'Login'}],
+              })
+            }
           />
         </View>
       </View>

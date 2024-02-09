@@ -10,13 +10,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 10,
   },
-  yourCouponsText: {
+  usedCouponsText: {
     fontSize: 24,
     color: '#3390C2',
     fontWeight: 'bold',
     textAlign: 'center',
   },
-  yourCouponsContainer: {
+  usedCouponsContainer: {
     top: 50,
     gap: -40,
   },

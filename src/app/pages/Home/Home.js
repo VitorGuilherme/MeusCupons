@@ -4,7 +4,10 @@ import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
 import i18n from '../../components/i18n';
 import styles from '../Home/Styles';
 
+// Firebase
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
+
 import {useNavigation} from '@react-navigation/native';
 import Coupon from '../../components/Coupons/Coupons';
 
@@ -16,9 +19,7 @@ export default Home = () => {
   const [displayName, setDisplayName] = useState('');
   const [isProfileModalVisible, setIsProfileModalVisible] = useState(false);
   const [isCouponModalVisible, setIsCouponVisible] = useState(false);
-  const [selectedMallName, setSelectedMallName] = useState('');
-
-  const navigation = useNavigation();
+  const [coupons, setCoupons] = useState([]);
 
   useEffect(() => {
     const user = auth().currentUser;
@@ -26,12 +27,23 @@ export default Home = () => {
       const name = user.displayName;
       setDisplayName(name);
     }
+    const fetchCoupons = async () => {
+      const couponsRef = firestore().collection('cupons');
+      const snapshot = await couponsRef.get();
+      const couponsList = snapshot.docs.map(doc => doc.data());
+      setCoupons(couponsList);
+
+      // console.log('DADOS => ', couponsList);
+    };
+
+    fetchCoupons();
   }, []);
 
   const toggleProfileModal = () => {
     setIsProfileModalVisible(!isProfileModalVisible);
   };
   const toggleCouponModal = () => {
+    console.log("DAdos: ", coupons)
     setIsCouponVisible(!isCouponModalVisible);
   };
 
@@ -53,17 +65,19 @@ export default Home = () => {
         animationOut={'zoomOut'}
         onBackdropPress={() => setIsCouponVisible(false)}
         isVisible={isCouponModalVisible}>
-        <ModalCoupon mallName={selectedMallName} />
+        <ModalCoupon
+          key={coupons.id}
+          mallName={coupons.name}
+          encryptedText={coupons.encryptedText}
+        />
       </Modal>
-      <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-        <View style={styles.header}>
-          <Image
-            source={require('../../assets/cartSmall.png')}
-            style={styles.image}
-          />
-          <Text style={styles.headerTitle}>{i18n.meusCuponsTitle}</Text>
-        </View>
-      </TouchableOpacity>
+      <View style={styles.header}>
+        <Image
+          source={require('../../assets/cartSmall.png')}
+          style={styles.image}
+        />
+        <Text style={styles.headerTitle}>{i18n.meusCuponsTitle}</Text>
+      </View>
       <ScrollView>
         <View style={{top: 20}}>
           <View style={styles.profileContainer}>
@@ -83,28 +97,14 @@ export default Home = () => {
           <Text style={styles.availableCoupons}>{i18n.availableCoupons}</Text>
         </View>
         <View style={{gap: 15}}>
-          <Coupon
-            mallName="Até logo"
-            encryptedText="**********"
-            onPress={toggleCouponModal}
-          />
-          <Coupon
-            mallName="Boa Compra"
-            encryptedText="**********"
-            value="Boa Compra"
-          />
-          <Coupon mallName="Bom e barato" encryptedText="**********" />
-          <Coupon mallName="Compra Certa" encryptedText="**********" />
-          <Coupon mallName="Baratão" encryptedText="**********" />
-          <Coupon mallName="Mago" encryptedText="**********" />
-          <Coupon mallName="Nagumo" encryptedText="**********" />
-          <Coupon mallName="Primos" encryptedText="**********" />
-          <Coupon mallName="Mohamed" encryptedText="**********" />
-          <Coupon mallName="Economia" encryptedText="**********" />
-          <Coupon mallName="Seu Pedro" encryptedText="**********" />
-          <Coupon mallName="Pague menos" encryptedText="**********" />
-          <Coupon mallName="Ouro" encryptedText="**********" />
-          <Coupon mallName="Ouro" encryptedText="**********" />
+          {coupons.map(coupon => (
+            <Coupon
+              key={coupon.id}
+              mallName={coupon.name}
+              encryptedText={coupon.encryptedText}
+              onPress={() => toggleCouponModal(coupon)}
+            />
+          ))}
         </View>
       </ScrollView>
     </View>

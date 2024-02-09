@@ -32,9 +32,9 @@ export default Login = () => {
       auth()
         .signInWithEmailAndPassword(email, password)
         .then(() => navigation.navigate('Home'))
-        .catch(error => console.log(error));
+        .catch(() => Alert.alert(i18n.invalidEmailOrPassword));
     } else {
-      Alert.alert('Por favor, preencha os campos obrigatórios!');
+      Alert.alert(i18n.fillRequiredFields);
     }
   };
 
@@ -61,7 +61,7 @@ export default Login = () => {
         behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={-100}>
         <View style={styles.titleAndLogo}>
-          <Image source={require('../../assets/cart45Big.png')} style={{top: 24, right: 25}}/>
+          <Image source={require('../../assets/cart45Big.png')} style={{top: 32, right: 25}}/>
           <Text style={styles.title}>{i18n.meusCuponsTitle}</Text>
           <Text style={styles.loginSubtitle}>{i18n.welcomeText}</Text>
         </View>
@@ -75,7 +75,7 @@ export default Login = () => {
             <View style={styles.loginInputsContainer}>
               <Image source={require('../../assets/icons/perfil-Icon.png')} />
               <SharedTextInput
-                placeholder={'Digite o seu email'}
+                placeholder="Digite o seu email"
                 value={email}
                 onChangeText={setEmail}
                 onBlur={handleEmailValidation}
