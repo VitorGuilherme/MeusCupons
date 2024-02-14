@@ -34,9 +34,9 @@ export default profileModal = () => {
       <View style={styles.usedCouponsContainer}>
         <Text style={styles.usedCouponsText}>{i18n.usedCoupons}</Text>
         <View style={{gap: 10}}>
-          <Coupon mallName="Até logo" encryptedText="efb8c11149" />
-          <Coupon mallName="Barato" encryptedText="wedr45678c" />
-          <Coupon mallName="CompraC" encryptedText="11kiccderf" />
+          <Coupon mallName="Primos" encryptedText="efb8c11149" />
+          <Coupon mallName="Pérola" encryptedText="wedr45678c" />
+          <Coupon mallName="Esperança" encryptedText="11kiccderf" />
         </View>
       </View>
       <View style={styles.meusCuponsFooterContainer}>
