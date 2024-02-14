@@ -9,7 +9,6 @@ const SharedTextInput = ({
   value,
   onChangeText,
   onBlur,
-  onFocus,
 }) => {
   return (
     <TextInput
@@ -46,13 +45,7 @@ const SharedButton = ({
         borderStyle,
       ]}
       onPress={onPress}>
-      <Text
-        style={[
-          styles.buttonText,
-          {color: color },
-        ]}>
-        {title}
-      </Text>
+      <Text style={[styles.buttonText, {color: color}]}>{title}</Text>
     </TouchableOpacity>
   );
 };
@@ -76,7 +69,7 @@ const styles = StyleSheet.create({
   buttonStyle: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: "100%",
+    width: '100%',
     height: 50,
     padding: 10,
     borderRadius: 8,

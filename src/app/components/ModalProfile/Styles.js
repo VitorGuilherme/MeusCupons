@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
+    backgroundColor: '#3390C2',
     height: '100%',
     width: '80%',
   },
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   },
   usedCouponsText: {
     fontSize: 24,
-    color: '#3390C2',
+    color: '#fff',
     fontWeight: 'bold',
     textAlign: 'center',
   },
@@ -22,22 +22,21 @@ const styles = StyleSheet.create({
   },
   helpCentral: {
     fontSize: 20,
-    color: '#3390C2',
+    color: '#fff',
     fontWeight: 'bold',
   },
   regionStyle: {
     fontSize: 14,
-    color: '#3390C2',
+    color: '#fff',
     fontWeight: 'bold',
   },
   stateNumber: {
     fontSize: 14,
-    color: '#3390C2',
+    color: '#fff',
     textDecorationLine: 'underline',
   },
   meusCuponsFooterContainer: {
     height: '50%',
-    // backgroundColor: '#000',
     justifyContent: 'flex-end',
     alignItems: 'center',
     top: 150,

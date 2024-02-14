@@ -28,6 +28,7 @@ export default SignUp = () => {
   const [password, setPassword] = useState('');
   const [isValidEmail, setIsvalidEmail] = useState(true);
   const [isValidPassword, setIsvalidPassword] = useState(true);
+  const [isEmailRegex, setEmailRegex] = useState(true);
 
   const handleSignUp = () => {
     if (email && password) {
@@ -59,15 +60,18 @@ export default SignUp = () => {
     }
   };
 
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const passwordRegex = /^.{6,}$/;
+
   const handleEmailValidation = () => {
-    if (!email) {
+    if (!email || !emailRegex.test(email)) {
       setIsvalidEmail(false);
     } else {
       setIsvalidEmail(true);
     }
   };
   const handlePasswordValidation = () => {
-    if (!password) {
+    if (!password || !passwordRegex.test(password)) {
       setIsvalidPassword(false);
     } else {
       setIsvalidPassword(true);
@@ -106,9 +110,10 @@ export default SignUp = () => {
           </View>
           {!isValidEmail ? (
             <Text style={styles.obrigatoryFieldStyle}>
-              {i18n.obrigatoryField}
+              {i18n.invalidEmail}
             </Text>
           ) : null}
+         
 
           <Text
             style={
@@ -150,7 +155,7 @@ export default SignUp = () => {
           </View>
           {!isValidPassword ? (
             <Text style={styles.obrigatoryFieldStyle}>
-              {i18n.obrigatoryField}
+              {i18n.invalidPassword}
             </Text>
           ) : null}
         </View>

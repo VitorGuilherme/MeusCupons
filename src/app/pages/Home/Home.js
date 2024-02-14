@@ -8,7 +8,6 @@ import styles from '../Home/Styles';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
-import {useNavigation} from '@react-navigation/native';
 import Coupon from '../../components/Coupons/Coupons';
 
 import Modal from 'react-native-modal';
@@ -20,6 +19,7 @@ export default Home = () => {
   const [isProfileModalVisible, setIsProfileModalVisible] = useState(false);
   const [isCouponModalVisible, setIsCouponVisible] = useState(false);
   const [coupons, setCoupons] = useState([]);
+  const [clickedCoupon, setClickedCoupon] = useState({});
 
   useEffect(() => {
     const user = auth().currentUser;
@@ -32,8 +32,6 @@ export default Home = () => {
       const snapshot = await couponsRef.get();
       const couponsList = snapshot.docs.map(doc => doc.data());
       setCoupons(couponsList);
-
-      // console.log('DADOS => ', couponsList);
     };
 
     fetchCoupons();
@@ -42,8 +40,10 @@ export default Home = () => {
   const toggleProfileModal = () => {
     setIsProfileModalVisible(!isProfileModalVisible);
   };
-  const toggleCouponModal = () => {
-    console.log("DAdos: ", coupons)
+
+  const toggleCouponModal = infos => {
+    setClickedCoupon(infos);
+    console.log('Coupon Infos => ', infos);
     setIsCouponVisible(!isCouponModalVisible);
   };
 
@@ -66,9 +66,9 @@ export default Home = () => {
         onBackdropPress={() => setIsCouponVisible(false)}
         isVisible={isCouponModalVisible}>
         <ModalCoupon
-          key={coupons.id}
-          mallName={coupons.name}
-          encryptedText={coupons.encryptedText}
+          key={clickedCoupon?.id}
+          mallName={clickedCoupon?.name}
+          encryptedText={clickedCoupon?.encryptedText}
         />
       </Modal>
       <View style={styles.header}>
@@ -81,18 +81,20 @@ export default Home = () => {
       <ScrollView>
         <View style={{top: 20}}>
           <View style={styles.profileContainer}>
-            <View style={{right: 40}}>
+            <View style={{left: 50}}>
               <Text style={styles.memberAnnounced}>{i18n.memberAnnounced}</Text>
               <TouchableOpacity>
                 <Text style={styles.clickHere}>{i18n.clickHere}</Text>
               </TouchableOpacity>
             </View>
+            <View style={styles.titleAndProfileContainer}>
             <Text style={styles.profileTitle}>
               {i18n.profileHelloText} {displayName}
             </Text>
             <TouchableOpacity onPress={toggleProfileModal}>
-              <Image source={require('../../assets/icons/userProfile.png')} />
+              <Image source={require('../../assets/icons/profileIcon.png')} />
             </TouchableOpacity>
+            </View>
           </View>
           <Text style={styles.availableCoupons}>{i18n.availableCoupons}</Text>
         </View>

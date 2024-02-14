@@ -11,7 +11,7 @@ export default styles = StyleSheet.create({
     height: 60,
     borderWidth: 1,
     borderRadius: 10,
-    borderColor: '#A7A2A2',
+    borderColor: '#fff',
     top: 60,
     left: '35%',
     gap: 5
@@ -21,12 +21,12 @@ export default styles = StyleSheet.create({
   },
   mallNameStyle: {
     fontSize: 20,
-    color: '#A7A2A2',
+    color: '#fff',
     fontWeight: 'bold',
   },
   encryptedText: {
     fontSize: 15,
-    color: '#A7A2A2',
+    color: '#fff',
     fontWeight: 'bold',
   },
 });

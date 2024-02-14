@@ -26,8 +26,8 @@ export default profileModal = () => {
   return (
     <View style={styles.container}>
       <View style={styles.profileNameContainer}>
-        <Image source={require('../../assets/icons/userProfile.png')} />
-        <Text style={{fontSize: 30, color: '#3390C2', fontWeight: 'bold'}}>
+        <Image source={require('../../assets/icons/profileIcon.png')} />
+        <Text style={{fontSize: 30, color: '#FAFF04', fontWeight: 'bold', maxWidth: 250}}>
           {displayName}
         </Text>
       </View>
@@ -40,7 +40,7 @@ export default profileModal = () => {
         </View>
       </View>
       <View style={styles.meusCuponsFooterContainer}>
-        <Image source={require('../../assets/cart45.png')} />
+        <Image source={require('../../assets/cart45.png')} style={{top: 15, right:5}} />
         <Text style={styles.helpCentral}>{i18n.helpCentral}</Text>
         <Text style={styles.regionStyle}>{i18n.stateName}</Text>
         <Text style={styles.stateNumber}>{i18n.stateNumber}</Text>

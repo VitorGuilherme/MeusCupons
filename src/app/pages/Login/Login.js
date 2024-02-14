@@ -83,8 +83,8 @@ export default Login = () => {
             </View>
           </View>
           {!emailValidation ? (
-            <Text style={[styles.obrigatoryFieldStyle, {bottom: 2}]}>
-              {i18n.obrigatoryField}
+            <Text style={[styles.obrigatoryFieldStyle, {bottom: 1}]}>
+              {i18n.invalidEmail}
             </Text>
           ) : null}
 
@@ -136,7 +136,7 @@ export default Login = () => {
             </TouchableOpacity>
             {!passwordValidation ? (
               <Text style={[styles.obrigatoryFieldStyle, {right: 10}]}>
-                {i18n.obrigatoryField}
+                {i18n.invalidPassword}
               </Text>
             ) : null}
           </View>

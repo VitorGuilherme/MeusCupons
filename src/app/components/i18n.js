@@ -7,10 +7,11 @@ const pt = {
   insertPassword: 'Digite a sua senha',
   welcomeText: 'Bem vindo e boas compras!',
   forgotPassword: 'Esqueceu sua senha?',
-  obrigatoryField: 'Campo Obrigatório!',
+  invalidEmail: 'Email inválido!',
+  invalidPassword: 'Senha inválida!',
   //Home/ProfileModal/CouponModal
   profileHelloText: 'Olá,',
-  memberAnnounced: 'Gostaria de ter seu\n mercado anunciado?',
+  memberAnnounced: 'Gostaria de ter seu\nmercado anunciado?',
   clickHere: 'Clique para saber mais',
   coupomDescriptionText:
     'Confira nossos cupons disponíveis e economize hoje mesmo!',
@@ -23,7 +24,7 @@ const pt = {
   otherRegionsNumber: '4004 1293943939',
   logoutButton: 'SAIR DO MEUS CUPONS',
 
-  qrCodeUse: 'Utilize o QR code na tela para validar o cupom',
+  qrCodeUse: 'Utilize o QR code na tela para\n validar o cupom',
 
   //SignUp
   signUpTitle: 'Cadastro',
