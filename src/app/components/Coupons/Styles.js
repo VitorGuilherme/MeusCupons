@@ -8,7 +8,7 @@ export default styles = StyleSheet.create({
     alignItems: 'center',
     padding: 12,
     width: '90%',
-    height: 60,
+    height: 80,
     borderWidth: 1,
     borderRadius: 10,
     borderColor: '#fff',
@@ -26,6 +26,7 @@ export default styles = StyleSheet.create({
   },
   encryptedText: {
     fontSize: 15,
+    width: 150,
     color: '#fff',
     fontWeight: 'bold',
   },

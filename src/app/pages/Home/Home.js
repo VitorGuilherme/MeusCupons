@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+  SafeAreaView,
+} from 'react-native';
 
 import i18n from '../../components/i18n';
 import styles from '../Home/Styles';
@@ -48,7 +55,7 @@ export default Home = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Modal
         animationIn="slideInRight"
         animationOut="slideOutRight"
@@ -78,7 +85,7 @@ export default Home = () => {
         />
         <Text style={styles.headerTitle}>{i18n.meusCuponsTitle}</Text>
       </View>
-      <ScrollView>
+      <ScrollView style={{right: 5}}>
         <View style={{top: 20}}>
           <View style={styles.profileContainer}>
             <View style={{left: 50}}>
@@ -88,12 +95,12 @@ export default Home = () => {
               </TouchableOpacity>
             </View>
             <View style={styles.titleAndProfileContainer}>
-            <Text style={styles.profileTitle}>
-              {i18n.profileHelloText} {displayName}
-            </Text>
-            <TouchableOpacity onPress={toggleProfileModal}>
-              <Image source={require('../../assets/icons/profileIcon.png')} />
-            </TouchableOpacity>
+              <Text style={styles.profileTitle}>
+                {i18n.profileHelloText} {displayName}
+              </Text>
+              <TouchableOpacity onPress={toggleProfileModal}>
+                <Image source={require('../../assets/icons/profileIcon.png')} />
+              </TouchableOpacity>
             </View>
           </View>
           <Text style={styles.availableCoupons}>{i18n.availableCoupons}</Text>
@@ -109,6 +116,6 @@ export default Home = () => {
           ))}
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };

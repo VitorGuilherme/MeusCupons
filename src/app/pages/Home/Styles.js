@@ -17,10 +17,11 @@ const styles = StyleSheet.create({
     height: 80,
     top: 0,
     paddingLeft: 10,
+    backgroundColor: '#FAFF04'
   },
   headerTitle: {
     fontSize: 25,
-    color: '#fff',
+    color: '#3390C2',
     fontWeight: 'bold',
   },
   profileContainer: {
