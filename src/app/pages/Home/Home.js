@@ -105,7 +105,7 @@ export default Home = () => {
           </View>
           <Text style={styles.availableCoupons}>{i18n.availableCoupons}</Text>
         </View>
-        <View style={{gap: 15}}>
+        <View style={{marginBottom: 80, gap: 15}}>
           {coupons.map(coupon => (
             <Coupon
               key={coupon.id}

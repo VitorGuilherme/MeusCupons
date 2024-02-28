@@ -8,7 +8,7 @@ import Coupon from '../Coupons/Coupons';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 import {SharedButton} from '../sharedComponents';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 export default profileModal = () => {
   const [displayName, setDisplayName] = useState('');
@@ -27,20 +27,29 @@ export default profileModal = () => {
     <View style={styles.container}>
       <View style={styles.profileNameContainer}>
         <Image source={require('../../assets/icons/profileIcon.png')} />
-        <Text style={{fontSize: 30, color: '#FAFF04', fontWeight: 'bold', maxWidth: 250}}>
+        <Text
+          style={{
+            fontSize: 30,
+            color: '#FAFF04',
+            fontWeight: 'bold',
+            maxWidth: 250,
+          }}>
           {displayName}
         </Text>
       </View>
       <View style={styles.usedCouponsContainer}>
-        <Text style={styles.usedCouponsText}>{i18n.usedCoupons}</Text>
-        <View style={{gap: 10}}>
-          <Coupon mallName="Primos" encryptedText="efb8c11149" />
-          <Coupon mallName="Pérola" encryptedText="wedr45678c" />
-          <Coupon mallName="Esperança" encryptedText="11kiccderf" />
-        </View>
+        <TouchableOpacity>
+          <Image
+            source={require('../../assets/dummyMap.png')}
+            style={{width: 300, height: 200, left: 15}}
+          />
+        </TouchableOpacity>
       </View>
       <View style={styles.meusCuponsFooterContainer}>
-        <Image source={require('../../assets/cart45.png')} style={{top: 15, right:5}} />
+        <Image
+          source={require('../../assets/cart45.png')}
+          style={{top: 15, right: 5}}
+        />
         <Text style={styles.helpCentral}>{i18n.helpCentral}</Text>
         <Text style={styles.regionStyle}>{i18n.stateName}</Text>
         <Text style={styles.stateNumber}>{i18n.stateNumber}</Text>
@@ -52,10 +61,12 @@ export default profileModal = () => {
             color="#FFFFFF"
             title={i18n.logoutButton}
             padding={25}
-            onPress={() => navigation.reset({
-              index: 0,
-              routes: [{ name: 'Login' }],
-            })}
+            onPress={() =>
+              navigation.reset({
+                index: 0,
+                routes: [{name: 'Login'}],
+              })
+            }
           />
         </TouchableOpacity>
       </View>

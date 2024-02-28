@@ -36,11 +36,8 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
   meusCuponsFooterContainer: {
-    height: '50%',
-    justifyContent: 'flex-end',
     alignItems: 'center',
-    top: 150,
-    paddingVertical: 150,
+    marginTop: 280
   },
 });
 

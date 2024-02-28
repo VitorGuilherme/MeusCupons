@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     right: 0,
     left: 0,
+    flex: 1,
     position: 'absolute',
     backgroundColor: '#3390C2',
   },
