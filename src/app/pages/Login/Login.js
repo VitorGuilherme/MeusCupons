@@ -38,20 +38,15 @@ export default Login = () => {
     }
   };
 
+  const emailRegex = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g);
+  const passwordRegex = new RegExp(/^\d{6}$/);
+
   const handleEmailValidation = () => {
-    if (!email) {
-      setEmailValidation(false);
-    } else {
-      setEmailValidation(true);
-    }
+    (emailRegex.test(email)) ? setEmailValidation(true) : setEmailValidation(false)
   };
 
   const handlePasswordValidation = () => {
-    if (!password) {
-      setPasswordValidation(false);
-    } else {
-      setPasswordValidation(true);
-    }
+    (passwordRegex.test(password)) ? setPasswordValidation(true): setPasswordValidation(false)
   };
 
   return (

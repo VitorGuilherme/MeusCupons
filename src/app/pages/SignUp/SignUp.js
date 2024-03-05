@@ -28,7 +28,6 @@ export default SignUp = () => {
   const [password, setPassword] = useState('');
   const [isValidEmail, setIsvalidEmail] = useState(true);
   const [isValidPassword, setIsvalidPassword] = useState(true);
-  const [isEmailRegex, setEmailRegex] = useState(true);
 
   const handleSignUp = () => {
     if (email && password) {
@@ -47,35 +46,30 @@ export default SignUp = () => {
         })
         .catch(error => {
           if (error.code === 'auth/email-already-in-use') {
-            console.log('That email address is already in use!');
+            Alert.alert('Email já registrado!');
           }
 
           if (error.code === 'auth/invalid-email') {
-            console.log('That email address is invalid!');
+            Alert.alert('Email inválido!');
           }
           console.error(error);
         });
     } else {
-      Alert.alert('Email e senha não registrados!');
+      Alert.alert('Email ou senha incorretos!');
     }
   };
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const passwordRegex = /^.{6,}$/;
+  const emailRegex = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g);
+  const passwordRegex = new RegExp(/^.{6,}$/);
 
   const handleEmailValidation = () => {
-    if (!email || !emailRegex.test(email)) {
-      setIsvalidEmail(false);
-    } else {
-      setIsvalidEmail(true);
-    }
+    emailRegex.test(email) ? setIsvalidEmail(true) : setIsvalidEmail(false);
   };
+
   const handlePasswordValidation = () => {
-    if (!password || !passwordRegex.test(password)) {
-      setIsvalidPassword(false);
-    } else {
-      setIsvalidPassword(true);
-    }
+    passwordRegex.test(password)
+      ? setIsvalidPassword(true)
+      : setIsvalidPassword(false);
   };
 
   return (
@@ -91,7 +85,6 @@ export default SignUp = () => {
           <View style={[styles.textInputStyle]}>
             <SharedTextInput value={name} onChangeText={setName} />
           </View>
-
           <Text
             style={isValidEmail ? styles.signUpText : styles.signUpTextInvalid}>
             {i18n.signUpEmail}
@@ -109,11 +102,8 @@ export default SignUp = () => {
             />
           </View>
           {!isValidEmail ? (
-            <Text style={styles.obrigatoryFieldStyle}>
-              {i18n.invalidEmail}
-            </Text>
+            <Text style={styles.obrigatoryFieldStyle}>{i18n.invalidEmail}</Text>
           ) : null}
-         
 
           <Text
             style={

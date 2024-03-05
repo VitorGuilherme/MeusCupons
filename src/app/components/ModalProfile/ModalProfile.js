@@ -37,14 +37,14 @@ export default profileModal = () => {
           {displayName}
         </Text>
       </View>
-      <View style={styles.usedCouponsContainer}>
-        <TouchableOpacity>
+      <TouchableOpacity>
+        <View style={styles.usedCouponsContainer}>
           <Image
             source={require('../../assets/dummyMap.png')}
             style={{width: 300, height: 200, left: 15}}
           />
-        </TouchableOpacity>
-      </View>
+        </View>
+      </TouchableOpacity>
       <View style={styles.meusCuponsFooterContainer}>
         <Image
           source={require('../../assets/cart45.png')}
