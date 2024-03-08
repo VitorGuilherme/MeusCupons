@@ -6,6 +6,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
 
 import styles from './Styles';
@@ -28,32 +29,39 @@ export default SignUp = () => {
   const [password, setPassword] = useState('');
   const [isValidEmail, setIsvalidEmail] = useState(true);
   const [isValidPassword, setIsvalidPassword] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSignUp = () => {
     if (email && password) {
-      auth()
-        .createUserWithEmailAndPassword(email, password)
-        .then(userCredential => {
-          console.log('user:', userCredential);
-          const user = userCredential.user;
-          user
-            .updateProfile({
-              displayName: name,
-            })
-            .then(() => {
-              navigation.navigate('Home');
-            });
-        })
-        .catch(error => {
-          if (error.code === 'auth/email-already-in-use') {
-            Alert.alert('Email já registrado!');
-          }
+      setIsLoading(true);
 
-          if (error.code === 'auth/invalid-email') {
-            Alert.alert('Email inválido!');
-          }
-          console.error(error);
-        });
+      setTimeout(() => {
+        auth()
+          .createUserWithEmailAndPassword(email, password)
+          .then(userCredential => {
+            console.log('user:', userCredential);
+            const user = userCredential.user;
+            user
+              .updateProfile({
+                displayName: name,
+              })
+              .then(() => {
+                setIsLoading(false);
+                navigation.navigate('Home');
+              });
+          })
+          .catch(error => {
+            setIsLoading(false);
+            if (error.code === 'auth/email-already-in-use') {
+              Alert.alert('Email já registrado!');
+            }
+
+            if (error.code === 'auth/invalid-email') {
+              Alert.alert('Email inválido!');
+            }
+            console.error(error);
+          });
+      }, 2000);
     } else {
       Alert.alert('Email ou senha incorretos!');
     }
@@ -75,6 +83,11 @@ export default SignUp = () => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
+        {isLoading && (
+          <View style={{top: 350}}>
+            <ActivityIndicator size="large" color="#E6E8E8" />
+          </View>
+        )}
         <View style={styles.header}>
           <Image source={MeusCuponsLogo} />
           <Text style={styles.headerTitle}>{i18n.meusCuponsTitle}</Text>

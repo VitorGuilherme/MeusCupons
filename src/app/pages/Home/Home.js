@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   ScrollView,
   SafeAreaView,
+  ActivityIndicator,
 } from 'react-native';
 
 import i18n from '../../components/i18n';
@@ -84,6 +85,7 @@ export default Home = () => {
           style={styles.image}
         />
         <Text style={styles.headerTitle}>{i18n.meusCuponsTitle}</Text>
+        {/* <ActivityIndicator  size="large" color="#00ff00"/> */}
       </View>
       <ScrollView style={{right: 5}}>
         <View style={{top: 20}}>

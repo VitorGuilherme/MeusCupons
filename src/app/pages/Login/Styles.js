@@ -148,6 +148,9 @@ const styles = StyleSheet.create({
     color: '#F90C0C',
     bottom: 10,
   },
+  blurBackground: {
+    
+  }
 });
 
 export default styles;

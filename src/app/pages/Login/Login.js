@@ -8,6 +8,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   KeyboardAvoidingView,
+  ActivityIndicator,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
@@ -26,13 +27,26 @@ export default Login = () => {
   const [password, setPassword] = useState('');
   const [emailValidation, setEmailValidation] = useState(true);
   const [passwordValidation, setPasswordValidation] = useState(true);
+  const [isLoading, setIsloading] = useState(false);
+  const [showBlurBackground, setShowBlurBackground] = useState(false);
 
   const signIn = () => {
     if (email && password) {
-      auth()
-        .signInWithEmailAndPassword(email, password)
-        .then(() => navigation.navigate('Home'))
-        .catch(() => Alert.alert(i18n.invalidEmailOrPassword));
+      setIsloading(true);
+      setShowBlurBackground(true);
+
+      setTimeout(() => {
+        auth()
+          .signInWithEmailAndPassword(email, password)
+          .then(() => {
+            setIsloading(false);
+            navigation.navigate('Home');
+          })
+          .catch(() => {
+            setIsloading(false);
+            Alert.alert(i18n.invalidEmailOrPassword);
+          });
+      }, 2000);
     } else {
       Alert.alert(i18n.fillRequiredFields);
     }
@@ -42,11 +56,15 @@ export default Login = () => {
   const passwordRegex = new RegExp(/^\d{6}$/);
 
   const handleEmailValidation = () => {
-    (emailRegex.test(email)) ? setEmailValidation(true) : setEmailValidation(false)
+    emailRegex.test(email)
+      ? setEmailValidation(true)
+      : setEmailValidation(false);
   };
 
   const handlePasswordValidation = () => {
-    (passwordRegex.test(password)) ? setPasswordValidation(true): setPasswordValidation(false)
+    passwordRegex.test(password)
+      ? setPasswordValidation(true)
+      : setPasswordValidation(false);
   };
 
   return (
@@ -55,8 +73,17 @@ export default Login = () => {
         style={styles.container}
         behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={-100}>
+        {isLoading && (
+          <View style={{top: 350}}>
+            <ActivityIndicator size="large" color="#E6E8E8" />
+          </View>
+        )}
+        {/* {showBlurBackground && (<View style={styles.blurBackground} />)} */}
         <View style={styles.titleAndLogo}>
-          <Image source={require('../../assets/cart45Big.png')} style={{top: 32, right: 25}}/>
+          <Image
+            source={require('../../assets/cart45Big.png')}
+            style={{top: 32, right: 25}}
+          />
           <Text style={styles.title}>{i18n.meusCuponsTitle}</Text>
           <Text style={styles.loginSubtitle}>{i18n.welcomeText}</Text>
         </View>
