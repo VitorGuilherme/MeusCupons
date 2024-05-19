@@ -1,3 +1,9 @@
+## Meus Cupons App
+
+<img src="https://github.com/VitorGuilherme/MeusCupons/assets/70713339/3efa9acd-d4b5-48ed-bfc1-4efe4eb0620b"/>
+<img src="https://github.com/VitorGuilherme/MeusCupons/assets/70713339/66762eff-379c-47ed-bb51-46109d404840"/>
+<img src="https://github.com/VitorGuilherme/MeusCupons/assets/70713339/36c952c2-fa94-415f-838f-e9289dc61079"/>
+
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
