@@ -1,8 +1,47 @@
 ## Meus Cupons App
 
-<img src="https://github.com/VitorGuilherme/MeusCupons/assets/70713339/3efa9acd-d4b5-48ed-bfc1-4efe4eb0620b"/>
-<img src="https://github.com/VitorGuilherme/MeusCupons/assets/70713339/66762eff-379c-47ed-bb51-46109d404840"/>
-<img src="https://github.com/VitorGuilherme/MeusCupons/assets/70713339/36c952c2-fa94-415f-838f-e9289dc61079"/>
+<img src="https://github.com/VitorGuilherme/MeusCupons/assets/70713339/3efa9acd-d4b5-48ed-bfc1-4efe4eb0620b" height="650"/>
+<img src="https://github.com/VitorGuilherme/MeusCupons/assets/70713339/66762eff-379c-47ed-bb51-46109d404840" height="650"/>
+<img src="https://github.com/VitorGuilherme/MeusCupons/assets/70713339/36c952c2-fa94-415f-838f-e9289dc61079" height="650"/>
+
+## This app was created to provide mall coupons for small businesses that are not yet in the mobile marketplace but desire to be.
+
+### Description
+This application aims to support small businesses by providing them with a platform to offer coupons and promotions to potential customers within a mall environment. It was developed using React Native tools for cross-platform compatibility and Firebase storage for storing client and coupon data.
+
+### Features
+- **Coupon Management:** Small businesses can create, manage, and update their coupons within the app.
+- **Client Registration:** Users can register as clients to access and redeem available coupons.
+- **Firebase Integration:** Utilizes Firebase storage to securely store client information and coupon data.
+- **Cross-Platform Compatibility:** Developed using React Native, ensuring compatibility across both iOS and Android platforms.
+- **User-Friendly Interface:** Designed with an intuitive interface to provide ease of use for both businesses and clients.
+
+### Technologies Used
+- **React Native:** Framework for building native mobile applications using JavaScript and React.
+- **Firebase:** Backend-as-a-Service platform providing various services including storage, authentication, and real-time database.
+- **JavaScript:** Language used for programming the app's logic.
+- **HTML/CSS:** Used for structuring and styling the application's components.
+
+### How to Use
+1. **Installation:** Clone the repository and install dependencies.
+   ```bash
+   git clone https://github.com/VitorGuilherme/your-app.git
+   cd your-app
+   npm install
+Firebase Setup: Set up a Firebase project and configure Firebase storage for storing data.
+Run the App: Start the application on your emulator or physical device.
+bash
+Copy code
+npm start
+Future Improvements
+Implement push notifications to notify users about new coupons and promotions.
+Enhance security measures to protect client and coupon data.
+Integrate payment options for purchasing coupons or premium features.
+
+Contributors
+Vitor Guilherme
+
+
 
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
